@@ -20,9 +20,12 @@ jobs:
           - ubuntu-24.04-arm
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: cachix/install-nix-action@v31
+      - name: Install nix
+        uses: NixOS/nix-installer-action@main
         with:
-          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+          extra-conf: |
+            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+            experimental-features = nix-command flakes
       - name: Build
         run: |
           if [ "${{ matrix.os }}" = "ubuntu-24.04" ]
