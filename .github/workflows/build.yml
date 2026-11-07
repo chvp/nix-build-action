@@ -35,4 +35,4 @@ jobs:
           then
             export SYSTEM=aarch64-linux
           fi
-          nix build -L --no-link ${{ github.event.inputs.before_system }}.$SYSTEM.${{ github.event.inputs.after_system }}
+          nix build -L --no-link '${{ github.event.inputs.before_system }}'.$SYSTEM.'${{ github.event.inputs.after_system }}'
